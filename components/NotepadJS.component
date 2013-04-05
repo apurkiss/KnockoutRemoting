@@ -1,0 +1,48 @@
+<apex:component controller="NotepadController">
+<script>
+
+// Local Notepad__c object
+function Notepad__c(id, note) {
+    var self = this;
+    self.Id = ko.observable(id);
+    self.Note__c = ko.observable(note);
+}
+
+// ViewModel
+function NotepadViewModel() {
+    var self = this;
+    self.notePad = ko.observable({});
+    self.errors = ko.observable('');
+    self.json = ko.observable('');
+    
+    // Save to Apex
+	self.save = function(n) {
+		NotepadController.save(ko.toJS(n.notePad()), function(result, event){
+			if (event.status) {
+				self.errors('');
+				self.json(ko.toJSON(result));
+			} else {
+				self.errors(event.message);
+			}
+		});
+	}
+
+	// Load from Apex
+	self.load = function(){
+		NotepadController.load(function(result, event){
+			if (event.status) {
+				self.notePad(result);
+			}
+		});
+	}
+}
+
+// Activate Knockout.js
+var vm = new NotepadViewModel();
+ko.applyBindings(vm);
+
+// Load Note
+vm.load();
+
+</script>
+</apex:component>

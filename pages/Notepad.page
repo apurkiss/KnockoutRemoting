@@ -1,0 +1,12 @@
+<apex:page controller="NotepadController" action="{!onLoad}">
+<apex:sectionHeader title="Notepad"/>
+	<p></p>
+	<input data-bind="value: notePad().Note__c, valueUpdate: 'afterkeydown', event: { keyup: $root.save }"/>
+	<p></p>
+	<p></p>
+	<span data-bind="text: json"></span>
+	<p></p>
+	<div class="errors" data-bind="text: errors" style="color: red;"></div>
+	<c:Knockout />
+	<c:NotepadJS />
+</apex:page>
