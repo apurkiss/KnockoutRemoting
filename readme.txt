@@ -3,7 +3,7 @@ Knockout Remoting
 A Force.com integration of Knockout.js and Apex via JavaScript Remoting.
 Knockout Remoting demonstrates a real-time integration from DOM to
 SObject. Knockout.js keeps the View and ViewModel in sync and JavaScript 
-Remoting syncs the server onkeyup.
+Remoting syncs the server on keyup.
 
 Notepad.page:
   Visualforce page that includes all components
